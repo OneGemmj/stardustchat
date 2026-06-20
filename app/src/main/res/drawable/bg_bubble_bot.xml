@@ -6,5 +6,5 @@
         android:topRightRadius="18dp"
         android:bottomLeftRadius="4dp"
         android:bottomRightRadius="18dp" />
-    <solid android:color="#E8E8E8" />
+    <solid android:color="?attr/colorSecondaryContainer" />
 </shape>

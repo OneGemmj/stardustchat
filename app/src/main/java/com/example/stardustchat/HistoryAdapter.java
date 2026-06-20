@@ -113,7 +113,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         public void bind(ChatHistory history) {
             if (history != null) {
                 // 设置标题，如果为空则显示“未知对话”
-                titleText.setText(history.getTitle() != null ? history.getTitle() : "未知对话");
+                titleText.setText(history.getTitle() != null
+                        ? history.getTitle()
+                        : itemView.getContext().getString(R.string.unknown_chat));
                 // 设置时间
                 timeText.setText(formatTime(history.getTimestamp()));
                 // 设置聊天消息预览

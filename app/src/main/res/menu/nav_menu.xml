@@ -2,51 +2,51 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/nav_current_chat"
             android:icon="@drawable/ic_chat"
-            android:title="当前对话" />
-
+            android:title="@string/nav_current_chat" />
     </group>
 
-    <item android:title="历史记录">
+    <item android:title="@string/nav_history">
         <menu>
-            <group android:id="@+id/group_history" android:checkableBehavior="single">
+            <group
+                android:id="@+id/group_history"
+                android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_today"
                     android:icon="@drawable/ic_today"
-                    android:title="今天" />
+                    android:title="@string/nav_today" />
                 <item
                     android:id="@+id/nav_yesterday"
                     android:icon="@drawable/ic_yesterday"
-                    android:title="昨天" />
+                    android:title="@string/nav_yesterday" />
                 <item
                     android:id="@+id/nav_this_week"
                     android:icon="@drawable/ic_week"
-                    android:title="本周" />
+                    android:title="@string/nav_this_week" />
                 <item
                     android:id="@+id/nav_older"
                     android:icon="@drawable/ic_archive"
-                    android:title="更早" />
+                    android:title="@string/nav_older" />
             </group>
         </menu>
     </item>
 
-    <item android:title="设置">
+    <item android:title="@string/nav_settings_group">
         <menu>
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings"
-                android:title="应用设置" />
+                android:title="@string/nav_app_settings" />
             <item
                 android:id="@+id/nav_theme"
                 android:icon="@drawable/ic_palette"
-                android:title="主题设置" />
+                android:title="@string/nav_theme_settings" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_info"
-                android:title="关于" />
+                android:title="@string/nav_about" />
         </menu>
     </item>
 

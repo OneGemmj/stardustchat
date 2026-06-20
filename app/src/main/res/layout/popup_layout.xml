@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="2dp"
-    android:background="#00ffff">
+    android:background="#00FFFF"
+    android:orientation="horizontal"
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/tv_select"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:text="选择"
-        android:textColor="#ffffff"
+        android:background="#000000"
         android:gravity="center"
-        android:background="#000000"/>
+        android:text="@string/select"
+        android:textColor="#FFFFFF" />
+
     <TextView
         android:id="@+id/tv_select_all"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:text="全选"
-        android:textColor="#ffffff"
+        android:background="#000000"
         android:gravity="center"
-        android:background="#000000"/>
+        android:text="@string/select_all"
+        android:textColor="#FFFFFF" />
+
     <TextView
         android:id="@+id/tv_copy"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:text="复制"
-        android:textColor="#ffffff"
+        android:background="#000000"
         android:gravity="center"
-        android:background="#000000"/>
+        android:text="@string/copy"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/tv_delete"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:text="删除"
-        android:textColor="#ffffff"
+        android:background="#000000"
         android:gravity="center"
-        android:background="#000000"/>
+        android:text="@string/delete"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

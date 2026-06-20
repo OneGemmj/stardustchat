@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">StardustChat</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+
+    <string name="nav_current_chat">当前对话</string>
+    <string name="nav_history">历史记录</string>
+    <string name="nav_today">今天</string>
+    <string name="nav_yesterday">昨天</string>
+    <string name="nav_this_week">本周</string>
+    <string name="nav_older">更早</string>
+    <string name="nav_settings_group">设置</string>
+    <string name="nav_app_settings">应用设置</string>
+    <string name="nav_theme_settings">主题设置</string>
+    <string name="nav_about">关于</string>
+
+    <string name="welcome_title">欢迎使用 StardustChat</string>
+    <string name="welcome_subtitle">你的智能 AI 助手</string>
+    <string name="welcome_hint">输入消息开始对话...</string>
+    <string name="chat_hint">说点什么...</string>
+    <string name="send">发送</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="ok">确定</string>
+    <string name="upload_media">上传图片或视频</string>
+    <string name="edit">编辑</string>
+    <string name="copy">复制</string>
+    <string name="select">选择</string>
+    <string name="select_all">全选</string>
+    <string name="delete">删除</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_language_label">语言</string>
+    <string-array name="language_labels">
+        <item>English</item>
+        <item>中文</item>
+    </string-array>
+    <string name="api_base_url_hint">API Base URL，例如 https://api.openai.com/v1</string>
+    <string name="api_key_hint">API Key</string>
+    <string name="api_base_url_label">API 地址</string>
+    <string name="api_key_label">API Key</string>
+    <string name="model_label">模型</string>
+    <string name="manual_model_hint">手动添加模型名</string>
+    <string name="add_model">添加模型</string>
+    <string name="fetch_models">获取模型列表</string>
+    <string name="enable_vision_upload">开启视觉模型图片/视频上传</string>
+    <string name="enable_tools">开启工具调用和联网搜索</string>
+    <string name="tavily_key_hint">Tavily API Key</string>
+    <string name="tavily_label">Tavily 搜索</string>
+    <string name="tavily_get_key">获取 Tavily Key</string>
+    <string name="brave_key_hint">Brave Search API Key</string>
+    <string name="brave_label">Brave 搜索</string>
+    <string name="brave_get_key">获取 Brave Key</string>
+
+    <string name="toast_enable_upload">请先在设置中开启图片/视频上传。</string>
+    <string name="toast_api_base_required">请先设置 API 地址。</string>
+    <string name="toast_model_required">请先选择或添加模型名。</string>
+    <string name="toast_upload_disabled">图片/视频上传未开启。</string>
+    <string name="toast_settings_saved">设置已保存。</string>
+    <string name="toast_enter_message">请输入消息。</string>
+    <string name="toast_current_chat">当前对话</string>
+    <string name="toast_theme_not_ready">主题设置暂未实现。</string>
+    <string name="toast_added_attachments">已添加 %1$d 个附件。</string>
+    <string name="toast_unsupported_file">只支持图片和视频文件。</string>
+    <string name="toast_api_base_enter_first">请先填写 API 地址。</string>
+    <string name="toast_no_models_found">没有读取到模型名。</string>
+    <string name="toast_fetched_models">已获取 %1$d 个模型。</string>
+    <string name="toast_fetch_models_failed">获取模型失败：%1$s</string>
+    <string name="toast_unable_to_open_link">无法打开链接：%1$s</string>
+    <string name="toast_copied">已复制</string>
+
+    <string name="prompt_analyze_attachments">请分析这些附件。</string>
+    <string name="ai_thinking">AI 正在思考...</string>
+    <string name="request_failed">请求失败：%1$s</string>
+    <string name="ai_api_http_error">AI API HTTP %1$d：%2$s</string>
+    <string name="ai_no_choices">AI API 未返回 choices：%1$s</string>
+    <string name="ai_no_content">AI 没有返回内容。</string>
+    <string name="tool_missing_query">工具调用缺少 query 参数。</string>
+    <string name="unknown_tool">未知工具：%1$s</string>
+    <string name="tavily_key_missing">Tavily API Key 未配置。</string>
+    <string name="tavily_search_failed">Tavily 搜索失败 HTTP %1$d：%2$s</string>
+    <string name="brave_key_missing">Brave API Key 未配置。</string>
+    <string name="brave_search_failed">Brave 搜索失败 HTTP %1$d：%2$s</string>
+    <string name="attachment_too_large">%1$s 超过 25MB。</string>
+    <string name="attachment_generic">附件</string>
+    <string name="attachment_default_name">附件</string>
+    <string name="attachment_read_failed">无法读取附件。</string>
+    <string name="attachment_count_status">已选择 %1$d 个附件：%2$s</string>
+    <string name="attachment_summary">\n\n[已附加 %1$d 个文件：%2$s]</string>
+    <string name="new_chat">新对话</string>
+    <string name="unknown_chat">未知对话</string>
+    <string name="history_title_placeholder">对话标题</string>
+    <string name="history_preview_placeholder">最后一条消息预览...</string>
+
+    <string name="edit_message_title">编辑消息</string>
+    <string name="about_title">关于 StardustChat</string>
+    <string name="about_message">StardustChat v1.0\n\n支持自定义 OpenAI 兼容接口、视觉附件上传和联网搜索工具调用。</string>
+    <string name="welcome_about_message">StardustChat v1.0\n\n一个支持自定义 API、视觉附件和联网搜索工具的 AI 聊天应用。</string>
+    <string name="nav_header_subtitle">智能聊天助手</string>
+</resources>

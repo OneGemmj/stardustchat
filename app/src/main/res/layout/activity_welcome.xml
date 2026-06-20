@@ -5,51 +5,38 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:context=".WelcomeActivity">
 
-    <!-- 主内容区域 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- 工具栏 -->
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:elevation="0dp"
+            app:navigationIconTint="?attr/colorOnPrimary"
+            app:title="@string/app_name"
+            app:titleTextColor="?attr/colorOnPrimary" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="StardustChat"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <!-- 欢迎页面内容 -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_launcher_background">
+            android:background="?attr/colorSurface">
 
-            <!-- Logo -->
-            <!--android:src="@drawable/ic_launcher_foreground"-->
             <ImageView
                 android:id="@+id/logoImageView"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"
-                android:src="@mipmap/logoimage"/>
+                android:layout_marginTop="96dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/logoimage" />
 
-            <!-- 欢迎标题 -->
             <TextView
                 android:id="@+id/welcomeTitle"
                 android:layout_width="wrap_content"
@@ -57,12 +44,11 @@
                 android:layout_below="@id/logoImageView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="欢迎使用 StardustChat"
-                android:textColor="#1296db"
-                android:textSize="24sp"
+                android:text="@string/welcome_title"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
-            <!-- 副标题 -->
             <TextView
                 android:id="@+id/welcomeSubtitle"
                 android:layout_width="wrap_content"
@@ -70,57 +56,61 @@
                 android:layout_below="@id/welcomeTitle"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="您的智能AI助手"
-                android:textColor="#1296db"
+                android:text="@string/welcome_subtitle"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="16sp" />
 
-            <!-- 输入区域替换原来的三个按钮 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="50dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:background="@android:color/white"
+                android:background="?attr/colorSurfaceContainer"
                 android:elevation="8dp"
-                android:layout_marginHorizontal="16dp">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
-                <EditText
-                    android:id="@+id/welcomeMessageInput"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="输入消息开始对话..."
-                    android:padding="12dp"
-                    android:maxLines="3"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="#999999" />
+                    android:hint="@string/welcome_hint"
+                    app:boxBackgroundColor="?attr/colorSurface"
+                    app:boxStrokeColor="?attr/colorPrimary"
+                    app:endIconMode="clear_text">
 
-                <Button
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/welcomeMessageInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:minHeight="48dp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textColorHint="?attr/colorOnSurfaceVariant" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/welcomeSendButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="发送"
+                    android:layout_height="48dp"
                     android:layout_marginStart="8dp"
-                    android:background="@drawable/bg_send_button"
-                    android:textColor="@android:color/white"
-                    android:minWidth="80dp" />
-
+                    android:minWidth="80dp"
+                    android:text="@string/send" />
             </LinearLayout>
-
         </RelativeLayout>
-
     </LinearLayout>
 
-    <!-- 导航抽屉 -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white"
+        android:background="?attr/colorSurface"
         app:headerLayout="@layout/nav_header"
+        app:itemIconTint="?attr/colorOnSurfaceVariant"
+        app:itemTextColor="?attr/colorOnSurface"
         app:menu="@menu/nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="end"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="end"
+    android:orientation="vertical"
     android:padding="8dp">
+
     <TextView
         android:id="@+id/tvMessage"
-        android:background="@drawable/bg_bubble_user"
-        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:maxWidth="240dp"
-        android:textSize="16sp"
-        android:textIsSelectable="true"/>
+        android:background="@drawable/bg_bubble_user"
+        android:maxWidth="280dp"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:textColor="?attr/colorOnPrimary"
+        android:textIsSelectable="true"
+        android:textSize="16sp" />
 
-    <!-- 操作按钮 -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="end"
+        android:orientation="horizontal"
         android:paddingTop="4dp">
 
-        <!-- 编辑按钮（画笔图标） -->
         <ImageButton
             android:id="@+id/btnEdit"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/edit"
+            android:padding="8dp"
             android:src="@mipmap/ic_edit"
-            android:contentDescription="编辑"/>
+            android:tint="?attr/colorOnSurfaceVariant" />
 
-        <!-- 复制按钮（复制图标） -->
         <ImageButton
             android:id="@+id/btnCopy"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/copy"
+            android:padding="8dp"
             android:src="@mipmap/ic_copy"
-            android:contentDescription="复制"/>
+            android:tint="?attr/colorOnSurfaceVariant" />
     </LinearLayout>
 </LinearLayout>

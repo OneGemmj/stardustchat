@@ -2,4 +2,99 @@
     <string name="app_name">StardustChat</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_current_chat">Current chat</string>
+    <string name="nav_history">History</string>
+    <string name="nav_today">Today</string>
+    <string name="nav_yesterday">Yesterday</string>
+    <string name="nav_this_week">This week</string>
+    <string name="nav_older">Older</string>
+    <string name="nav_settings_group">Settings</string>
+    <string name="nav_app_settings">App settings</string>
+    <string name="nav_theme_settings">Theme settings</string>
+    <string name="nav_about">About</string>
+
+    <string name="welcome_title">Welcome to StardustChat</string>
+    <string name="welcome_subtitle">Your AI assistant</string>
+    <string name="welcome_hint">Start a conversation...</string>
+    <string name="chat_hint">Type a message...</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="ok">OK</string>
+    <string name="upload_media">Upload image or video</string>
+    <string name="edit">Edit</string>
+    <string name="copy">Copy</string>
+    <string name="select">Select</string>
+    <string name="select_all">All</string>
+    <string name="delete">Delete</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_language_label">Language</string>
+    <string-array name="language_labels">
+        <item>English</item>
+        <item>中文</item>
+    </string-array>
+    <string name="api_base_url_hint">API Base URL, e.g. https://api.openai.com/v1</string>
+    <string name="api_key_hint">API Key</string>
+    <string name="api_base_url_label">API base URL</string>
+    <string name="api_key_label">API key</string>
+    <string name="model_label">Model</string>
+    <string name="manual_model_hint">Add model name manually</string>
+    <string name="add_model">Add model</string>
+    <string name="fetch_models">Fetch models</string>
+    <string name="enable_vision_upload">Enable image/video upload for vision models</string>
+    <string name="enable_tools">Enable tool calling and web search</string>
+    <string name="tavily_key_hint">Tavily API Key</string>
+    <string name="tavily_label">Tavily search</string>
+    <string name="tavily_get_key">Get Tavily key</string>
+    <string name="brave_key_hint">Brave Search API Key</string>
+    <string name="brave_label">Brave search</string>
+    <string name="brave_get_key">Get Brave key</string>
+
+    <string name="toast_enable_upload">Enable image/video upload in Settings first.</string>
+    <string name="toast_api_base_required">Set the API base URL first.</string>
+    <string name="toast_model_required">Choose or add a model first.</string>
+    <string name="toast_upload_disabled">Image/video upload is disabled.</string>
+    <string name="toast_settings_saved">Settings saved.</string>
+    <string name="toast_enter_message">Enter a message.</string>
+    <string name="toast_current_chat">Current chat</string>
+    <string name="toast_theme_not_ready">Theme settings are not implemented yet.</string>
+    <string name="toast_added_attachments">Added %1$d attachment(s).</string>
+    <string name="toast_unsupported_file">Only image and video files are supported.</string>
+    <string name="toast_api_base_enter_first">Enter the API base URL first.</string>
+    <string name="toast_no_models_found">No model names found.</string>
+    <string name="toast_fetched_models">Fetched %1$d model(s).</string>
+    <string name="toast_fetch_models_failed">Fetch models failed: %1$s</string>
+    <string name="toast_unable_to_open_link">Unable to open link: %1$s</string>
+    <string name="toast_copied">Copied</string>
+
+    <string name="prompt_analyze_attachments">Please analyze these attachments.</string>
+    <string name="ai_thinking">AI is thinking...</string>
+    <string name="request_failed">Request failed: %1$s</string>
+    <string name="ai_api_http_error">AI API HTTP %1$d: %2$s</string>
+    <string name="ai_no_choices">AI API returned no choices: %1$s</string>
+    <string name="ai_no_content">AI returned no content.</string>
+    <string name="tool_missing_query">Tool call is missing the query argument.</string>
+    <string name="unknown_tool">Unknown tool: %1$s</string>
+    <string name="tavily_key_missing">Tavily API key is not configured.</string>
+    <string name="tavily_search_failed">Tavily search failed HTTP %1$d: %2$s</string>
+    <string name="brave_key_missing">Brave API key is not configured.</string>
+    <string name="brave_search_failed">Brave search failed HTTP %1$d: %2$s</string>
+    <string name="attachment_too_large">%1$s is larger than 25MB.</string>
+    <string name="attachment_generic">Attachment</string>
+    <string name="attachment_default_name">attachment</string>
+    <string name="attachment_read_failed">Unable to read attachment.</string>
+    <string name="attachment_count_status">Selected %1$d attachment(s): %2$s</string>
+    <string name="attachment_summary">\n\n[Attached %1$d file(s): %2$s]</string>
+    <string name="new_chat">New chat</string>
+    <string name="unknown_chat">Unknown chat</string>
+    <string name="history_title_placeholder">Chat title</string>
+    <string name="history_preview_placeholder">Last message preview...</string>
+
+    <string name="edit_message_title">Edit message</string>
+    <string name="about_title">About StardustChat</string>
+    <string name="about_message">StardustChat v1.0\n\nCustom OpenAI-compatible API settings, vision attachments, and web-search tool calling.</string>
+    <string name="welcome_about_message">StardustChat v1.0\n\nAn AI chat app with custom API settings, vision attachments, and web-search tools.</string>
+    <string name="nav_header_subtitle">AI chat assistant</string>
 </resources>
