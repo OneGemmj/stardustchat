@@ -3,6 +3,7 @@ package com.example.stardustchat;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,12 +49,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof UserViewHolder) {
             bindUserMessage((UserViewHolder) holder, message);
         } else if (holder instanceof BotViewHolder) {
-            ((BotViewHolder) holder).tvMessage.setText(message.getContent());
+            bindBotMessage((BotViewHolder) holder, message);
         }
     }
 
     private void bindUserMessage(UserViewHolder holder, ChatMessage message) {
         holder.tvMessage.setText(message.getContent());
+        holder.tvMessage.setMovementMethod(LinkMovementMethod.getInstance());
         holder.itemView.findViewById(R.id.btnEdit).setOnClickListener(view -> {
             Context context = view.getContext();
             EditText input = new EditText(context);
@@ -73,14 +75,21 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .show();
         });
 
-        holder.itemView.findViewById(R.id.btnCopy).setOnClickListener(view -> {
-            ClipboardManager clipboard = (ClipboardManager) view.getContext()
-                    .getSystemService(Context.CLIPBOARD_SERVICE);
-            if (clipboard != null) {
-                clipboard.setPrimaryClip(ClipData.newPlainText("message", message.getContent()));
-                Toast.makeText(view.getContext(), R.string.toast_copied, Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.itemView.findViewById(R.id.btnCopy).setOnClickListener(view -> copyMessage(view.getContext(), message));
+    }
+
+    private void bindBotMessage(BotViewHolder holder, ChatMessage message) {
+        holder.tvMessage.setText(message.getContent());
+        holder.tvMessage.setMovementMethod(LinkMovementMethod.getInstance());
+        holder.itemView.findViewById(R.id.btnCopyBot).setOnClickListener(view -> copyMessage(view.getContext(), message));
+    }
+
+    private void copyMessage(Context context, ChatMessage message) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(ClipData.newPlainText("message", message.getContent()));
+            Toast.makeText(context, R.string.toast_copied, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

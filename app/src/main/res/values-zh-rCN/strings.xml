@@ -37,8 +37,12 @@
     </string-array>
     <string name="api_base_url_hint">API Base URL，例如 https://api.openai.com/v1</string>
     <string name="api_key_hint">API Key</string>
+    <string name="system_prompt_hint">系统提示词，支持 {model}、{date}、{time}</string>
+    <string name="custom_headers_hint">自定义 HTTP 请求头 JSON，例如 {"X-App":"StardustChat"}</string>
     <string name="api_base_url_label">API 地址</string>
     <string name="api_key_label">API Key</string>
+    <string name="system_prompt_label">系统提示词</string>
+    <string name="custom_headers_label">自定义请求头</string>
     <string name="model_label">模型</string>
     <string name="manual_model_hint">手动添加模型名</string>
     <string name="add_model">添加模型</string>
@@ -68,6 +72,7 @@
     <string name="toast_fetch_models_failed">获取模型失败：%1$s</string>
     <string name="toast_unable_to_open_link">无法打开链接：%1$s</string>
     <string name="toast_copied">已复制</string>
+    <string name="toast_invalid_headers">自定义请求头必须是 JSON 对象。</string>
 
     <string name="prompt_analyze_attachments">请分析这些附件。</string>
     <string name="ai_thinking">AI 正在思考...</string>
@@ -77,6 +82,7 @@
     <string name="ai_no_content">AI 没有返回内容。</string>
     <string name="tool_missing_query">工具调用缺少 query 参数。</string>
     <string name="unknown_tool">未知工具：%1$s</string>
+    <string name="default_system_prompt">你是 StardustChat，一个有帮助的 AI 助手。如果使用联网搜索工具，请清晰总结结果，并尽可能附上来源链接。</string>
     <string name="tavily_key_missing">Tavily API Key 未配置。</string>
     <string name="tavily_search_failed">Tavily 搜索失败 HTTP %1$d：%2$s</string>
     <string name="brave_key_missing">Brave API Key 未配置。</string>

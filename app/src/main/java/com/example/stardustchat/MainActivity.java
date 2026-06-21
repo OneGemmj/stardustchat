@@ -44,10 +44,13 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final String KEY_API_BASE_URL = "api_base_url";
     private static final String KEY_API_KEY = "api_key";
+    private static final String KEY_SYSTEM_PROMPT = "system_prompt";
+    private static final String KEY_CUSTOM_HEADERS = "custom_headers";
     private static final String KEY_SELECTED_MODEL = "selected_model";
     private static final String KEY_MODEL_LIST = "model_list";
     private static final String KEY_VISION_ENABLED = "vision_enabled";
@@ -310,6 +315,14 @@ public class MainActivity extends AppCompatActivity
                                                 String userMessage,
                                                 List<AttachmentItem> attachments) throws Exception {
         JSONArray messages = new JSONArray();
+        String systemPrompt = buildSystemPrompt();
+        if (!TextUtils.isEmpty(systemPrompt)) {
+            JSONObject systemMessage = new JSONObject();
+            systemMessage.put("role", "system");
+            systemMessage.put("content", systemPrompt);
+            messages.put(systemMessage);
+        }
+
         int start = Math.max(0, historySnapshot.size() - 12);
         for (int i = start; i < historySnapshot.size(); i++) {
             ChatMessage chatMessage = historySnapshot.get(i);
@@ -327,6 +340,21 @@ public class MainActivity extends AppCompatActivity
         currentUser.put("content", buildUserContent(userMessage, attachments));
         messages.put(currentUser);
         return messages;
+    }
+
+    private String buildSystemPrompt() {
+        String prompt = settingsPrefs.getString(KEY_SYSTEM_PROMPT, "").trim();
+        if (TextUtils.isEmpty(prompt)) {
+            prompt = getString(R.string.default_system_prompt);
+        }
+
+        Date now = new Date();
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(now);
+        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(now);
+        return prompt
+                .replace("{model}", getSelectedModel())
+                .replace("{date}", date)
+                .replace("{time}", time);
     }
 
     private Object buildUserContent(String text, List<AttachmentItem> attachments) throws Exception {
@@ -406,6 +434,7 @@ public class MainActivity extends AppCompatActivity
         if (!TextUtils.isEmpty(apiKey)) {
             builder.addHeader("Authorization", "Bearer " + apiKey);
         }
+        applyCustomHeaders(builder);
 
         try (Response response = httpClient.newCall(builder.build()).execute()) {
             String responseBody = response.body() != null ? response.body().string() : "";
@@ -829,6 +858,14 @@ public class MainActivity extends AppCompatActivity
         EditText apiBaseInput = makeInput(getString(R.string.api_base_url_hint),
                 settingsPrefs.getString(KEY_API_BASE_URL, DEFAULT_API_BASE_URL), false);
         EditText apiKeyInput = makeInput(getString(R.string.api_key_hint), settingsPrefs.getString(KEY_API_KEY, ""), true);
+        EditText systemPromptInput = makeMultilineInput(
+                getString(R.string.system_prompt_hint),
+                settingsPrefs.getString(KEY_SYSTEM_PROMPT, ""),
+                4);
+        EditText customHeadersInput = makeMultilineInput(
+                getString(R.string.custom_headers_hint),
+                settingsPrefs.getString(KEY_CUSTOM_HEADERS, ""),
+                3);
 
         List<String> dialogModels = getSavedModels();
         ArrayAdapter<String> modelAdapter = new ArrayAdapter<>(this,
@@ -888,6 +925,8 @@ public class MainActivity extends AppCompatActivity
         addLabeledView(content, getString(R.string.settings_language_label), languageSpinner);
         addLabeledView(content, getString(R.string.api_base_url_label), apiBaseInput);
         addLabeledView(content, getString(R.string.api_key_label), apiKeyInput);
+        addLabeledView(content, getString(R.string.system_prompt_label), systemPromptInput);
+        addLabeledView(content, getString(R.string.custom_headers_label), customHeadersInput);
         addLabeledView(content, getString(R.string.model_label), modelSpinner);
         content.addView(manualModelInput);
         content.addView(addModelButton);
@@ -906,6 +945,11 @@ public class MainActivity extends AppCompatActivity
                 .setTitle(R.string.settings_title)
                 .setView(scrollView)
                 .setPositiveButton(R.string.save, (dialog, which) -> {
+                    String rawCustomHeaders = customHeadersInput.getText().toString().trim();
+                    if (!isValidCustomHeaders(rawCustomHeaders)) {
+                        Toast.makeText(this, R.string.toast_invalid_headers, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     Object selectedItem = modelSpinner.getSelectedItem();
                     String selectedModel = selectedItem != null ? selectedItem.toString() : DEFAULT_MODEL;
                     String selectedLanguage = languageSpinner.getSelectedItemPosition() == 1
@@ -917,6 +961,8 @@ public class MainActivity extends AppCompatActivity
                             .putString(LocaleHelper.KEY_LANGUAGE, selectedLanguage)
                             .putString(KEY_API_BASE_URL, apiBaseInput.getText().toString().trim())
                             .putString(KEY_API_KEY, apiKeyInput.getText().toString().trim())
+                            .putString(KEY_SYSTEM_PROMPT, systemPromptInput.getText().toString().trim())
+                            .putString(KEY_CUSTOM_HEADERS, rawCustomHeaders)
                             .putString(KEY_SELECTED_MODEL, selectedModel)
                             .putBoolean(KEY_VISION_ENABLED, visionCheck.isChecked())
                             .putBoolean(KEY_TOOLS_ENABLED, toolsCheck.isChecked())
@@ -940,6 +986,18 @@ public class MainActivity extends AppCompatActivity
         input.setInputType(password
                 ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
                 : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+        return input;
+    }
+
+    private EditText makeMultilineInput(String hint, String value, int minLines) {
+        EditText input = new EditText(this);
+        input.setHint(hint);
+        input.setText(value);
+        input.setMinLines(minLines);
+        input.setMaxLines(Math.max(minLines, 6));
+        input.setSingleLine(false);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        input.setGravity(android.view.Gravity.TOP | android.view.Gravity.START);
         return input;
     }
 
@@ -971,6 +1029,7 @@ public class MainActivity extends AppCompatActivity
                 if (!TextUtils.isEmpty(apiKey)) {
                     builder.addHeader("Authorization", "Bearer " + apiKey);
                 }
+                applyCustomHeaders(builder);
 
                 try (Response response = httpClient.newCall(builder.build()).execute()) {
                     String responseBody = response.body() != null ? response.body().string() : "";
@@ -1031,6 +1090,40 @@ public class MainActivity extends AppCompatActivity
             }
         }
         return new ArrayList<>(models);
+    }
+
+    private JSONObject parseCustomHeadersOrNull(String rawHeaders) {
+        if (TextUtils.isEmpty(rawHeaders) || TextUtils.isEmpty(rawHeaders.trim())) {
+            return null;
+        }
+        try {
+            return new JSONObject(rawHeaders.trim());
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    private boolean isValidCustomHeaders(String rawHeaders) {
+        return TextUtils.isEmpty(rawHeaders) || parseCustomHeadersOrNull(rawHeaders) != null;
+    }
+
+    private void applyCustomHeaders(Request.Builder builder) {
+        JSONObject headers = parseCustomHeadersOrNull(settingsPrefs.getString(KEY_CUSTOM_HEADERS, ""));
+        if (headers == null) {
+            return;
+        }
+
+        JSONArray names = headers.names();
+        if (names == null) {
+            return;
+        }
+        for (int i = 0; i < names.length(); i++) {
+            String name = names.optString(i, "").trim();
+            String value = headers.optString(name, "");
+            if (!TextUtils.isEmpty(name)) {
+                builder.header(name, value);
+            }
+        }
     }
 
     private void openUrl(String url) {

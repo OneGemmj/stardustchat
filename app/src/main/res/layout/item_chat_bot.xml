@@ -3,18 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="start"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoLink="web"
         android:background="@drawable/bg_bubble_bot"
+        android:linksClickable="true"
         android:maxWidth="280dp"
         android:paddingHorizontal="14dp"
         android:paddingVertical="10dp"
         android:textColor="?attr/colorOnSecondaryContainer"
         android:textIsSelectable="true"
         android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/btnCopyBot"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/copy"
+        android:padding="8dp"
+        android:src="@mipmap/ic_copy"
+        android:tint="?attr/colorOnSurfaceVariant" />
 </LinearLayout>

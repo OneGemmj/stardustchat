@@ -37,8 +37,12 @@
     </string-array>
     <string name="api_base_url_hint">API Base URL, e.g. https://api.openai.com/v1</string>
     <string name="api_key_hint">API Key</string>
+    <string name="system_prompt_hint">System prompt, supports {model}, {date}, {time}</string>
+    <string name="custom_headers_hint">Custom HTTP headers JSON, e.g. {"X-App":"StardustChat"}</string>
     <string name="api_base_url_label">API base URL</string>
     <string name="api_key_label">API key</string>
+    <string name="system_prompt_label">System prompt</string>
+    <string name="custom_headers_label">Custom request headers</string>
     <string name="model_label">Model</string>
     <string name="manual_model_hint">Add model name manually</string>
     <string name="add_model">Add model</string>
@@ -68,6 +72,7 @@
     <string name="toast_fetch_models_failed">Fetch models failed: %1$s</string>
     <string name="toast_unable_to_open_link">Unable to open link: %1$s</string>
     <string name="toast_copied">Copied</string>
+    <string name="toast_invalid_headers">Custom headers must be a JSON object.</string>
 
     <string name="prompt_analyze_attachments">Please analyze these attachments.</string>
     <string name="ai_thinking">AI is thinking...</string>
@@ -77,6 +82,7 @@
     <string name="ai_no_content">AI returned no content.</string>
     <string name="tool_missing_query">Tool call is missing the query argument.</string>
     <string name="unknown_tool">Unknown tool: %1$s</string>
+    <string name="default_system_prompt">You are StardustChat, a helpful AI assistant. If web search tools are used, summarize the results clearly and include source URLs when possible.</string>
     <string name="tavily_key_missing">Tavily API key is not configured.</string>
     <string name="tavily_search_failed">Tavily search failed HTTP %1$d: %2$s</string>
     <string name="brave_key_missing">Brave API key is not configured.</string>
